@@ -15,6 +15,7 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "phpstan/phpstan": "^0.12.14"
     },
     "config": {
         "preferred-install": {
@@ -51,7 +52,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "phpstan": "phpstan analyse ."
     },
     "conflict": {
         "symfony/symfony": "*"

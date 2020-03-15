@@ -1,0 +1,6 @@
+parameters:
+    excludes_analyse:
+        - %currentWorkingDirectory%/var/*
+        - %currentWorkingDirectory%/vendor/*
+    level: max
+    inferPrivatePropertyTypeFromConstructor: true
