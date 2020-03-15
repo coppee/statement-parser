@@ -100,15 +100,15 @@ final class BnpFortisStatementParser implements StatementParserInterface
     public function getTransactionCommunication(string $operation): string
     {
         if (self::TRANSACTION_TYPE_TRANSFER === $this->getTransactionType($operation)) {
-
+            return '';
         }
 
         if (self::TRANSACTION_TYPE_CARD_PAYMENT === $this->getTransactionType($operation)) {
-
+            return '';
         }
 
         if (self::TRANSACTION_TYPE_CREDIT_REPAYMENT === $this->getTransactionType($operation)) {
-
+            return '';
         }
 
         return '';

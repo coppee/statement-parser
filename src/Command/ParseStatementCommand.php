@@ -40,8 +40,7 @@ final class ParseStatementCommand extends Command
     public function __construct(
         LoggerInterface $logger,
         FilesystemService $filesystemService
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->filesystemService = $filesystemService;
 
