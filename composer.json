@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.14",
-        "squizlabs/php_codesniffer": "^3.5"
+        "friendsofphp/php-cs-fixer": "*"
     },
     "config": {
         "preferred-install": {
@@ -55,8 +55,9 @@
             "@auto-scripts"
         ],
         "phpstan": "phpstan analyse .",
-        "phpcs": "phpcs --standard=phpcs.xml.dist --extensions=php,lib,inc",
-        "phpcbf": "phpcbf --standard=phpcs.xml.dist --extensions=php,lib,inc"
+        "phpcs": "php-cs-fixer fix",
+        "phpcs-check": "php-cs-fixer fix --dry-run",
+        "phpall": ["@phpstan", "@phpcs"]
     },
     "conflict": {
         "symfony/symfony": "*"

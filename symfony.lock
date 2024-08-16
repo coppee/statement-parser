@@ -1,4 +1,16 @@
 {
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.62",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "markbaker/complex": {
         "version": "1.4.7"
     },
@@ -122,16 +134,7 @@
     "symfony/http-kernel": {
         "version": "v5.0.3"
     },
-    "symfony/mime": {
-        "version": "v5.0.3"
-    },
-    "symfony/polyfill-intl-idn": {
-        "version": "v1.13.1"
-    },
     "symfony/polyfill-mbstring": {
-        "version": "v1.13.1"
-    },
-    "symfony/polyfill-php73": {
         "version": "v1.13.1"
     },
     "symfony/routing": {
