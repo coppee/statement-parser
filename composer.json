@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.14",
+        "rector/rector": "*",
         "friendsofphp/php-cs-fixer": "*"
     },
     "config": {
@@ -54,6 +55,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "rector": "rector",
         "phpstan": "phpstan analyse .",
         "phpcs": "php-cs-fixer fix",
         "phpcs-check": "php-cs-fixer fix --dry-run",
