@@ -15,7 +15,7 @@ final class PhpSpreadsheetSaver implements SpreadsheetSaverInterface
     public function save(Spreadsheet $spreadsheet, ?SpreadsheetSaveOptions $options = null)
     {
         $PhpSpreadsheet = new PhpSpreadsheet();
-        Cell::setValueBinder( new AdvancedValueBinder() );
+        Cell::setValueBinder(new AdvancedValueBinder());
 
         $sheet = $PhpSpreadsheet->getActiveSheet();
         $sheet->getStyle('A1:J1')->applyFromArray($options->getColumnStyles());
@@ -24,22 +24,22 @@ final class PhpSpreadsheetSaver implements SpreadsheetSaverInterface
         foreach ($options->getColumnNames() as $columnName) {
             $sheet->getColumnDimension($columnLetter)->setAutoSize(true);
             $sheet->setCellValue($columnLetter.'1', "\n$columnName\n");
-            $columnLetter++;
+            ++$columnLetter;
         }
 
-        $i=2;
+        $i = 2;
 
         foreach ($spreadsheet->getData() as $operation) {
             $columnLetter = 'A';
             foreach ($operation as $column) {
                 $sheet->setCellValue($columnLetter.$i, $column);
-                $columnLetter++;
+                ++$columnLetter;
             }
-            $i++;
+            ++$i;
         }
 
         $xlsxFile = new Xlsx($PhpSpreadsheet);
-        $filePath = $options->getDirectoryPath() . '/' . $spreadsheet->getFilename();
+        $filePath = $options->getDirectoryPath().'/'.$spreadsheet->getFilename();
         try {
             $xlsxFile->save($filePath);
         } catch (WriterException $exception) {

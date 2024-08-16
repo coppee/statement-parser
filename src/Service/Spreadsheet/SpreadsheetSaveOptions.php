@@ -8,9 +8,9 @@ final class SpreadsheetSaveOptions
 {
     /** @var array */
     private $columnNames;
-    /** @var array*/
+    /** @var array */
     private $columnStyles;
-    /** @var string*/
+    /** @var string */
     private $directoryPath;
 
     private const COLUMN_NAMES = 'columnNames';
