@@ -25,6 +25,7 @@ final class BnpFortisStatementParser implements StatementParserInterface
             $date = \preg_split(self::PATTERN_VALUE_DATE, $v, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
             $out[\trim($date[0])] = $date[1];
         }
+
         return $out;
     }
 
@@ -38,40 +39,44 @@ final class BnpFortisStatementParser implements StatementParserInterface
                 $out[] = trim($v);
             }
         }
+
         return $out;
     }
 
     public function getTransactionNumber(string $operation): string
     {
         \preg_match_all(self::PATTERN_TRANSACTION, trim($operation), $matches);
+
         return $matches[1][0];
     }
 
     public function getTransactionDate(string $operation): string
     {
         \preg_match_all(self::PATTERN_TRANSACTION, trim($operation), $matches);
+
         return $matches[6][0];
     }
 
     public function getTransactionAmount(string $operation): string
     {
         \preg_match_all(self::PATTERN_TRANSACTION, trim($operation), $matches);
-        return $matches[8][0] . $matches[7][0];
+
+        return $matches[8][0].$matches[7][0];
     }
 
     public function getTransactionType(string $operation): string
     {
         $content = $this->getTransactionContent($operation);
 
-        if (\strpos($content, self::TRANSACTION_TYPE_TRANSFER) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_TRANSFER)) {
             return self::TRANSACTION_TYPE_TRANSFER;
         }
 
-        if (\strpos($content, self::TRANSACTION_TYPE_CARD_PAYMENT) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_CARD_PAYMENT)) {
             return self::TRANSACTION_TYPE_CARD_PAYMENT;
         }
 
-        if (\strpos($content, self::TRANSACTION_TYPE_CREDIT_REPAYMENT) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_CREDIT_REPAYMENT)) {
             return self::TRANSACTION_TYPE_CREDIT_REPAYMENT;
         }
 
@@ -82,15 +87,15 @@ final class BnpFortisStatementParser implements StatementParserInterface
     {
         $content = $this->getTransactionContent($operation);
 
-        if (\strpos($content, self::TRANSACTION_TYPE_TRANSFER) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_TRANSFER)) {
             return self::TRANSACTION_TYPE_TRANSFER;
         }
 
-        if (\strpos($content, self::TRANSACTION_TYPE_CARD_PAYMENT) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_CARD_PAYMENT)) {
             return self::TRANSACTION_TYPE_CARD_PAYMENT;
         }
 
-        if (\strpos($content, self::TRANSACTION_TYPE_CREDIT_REPAYMENT) === 0) {
+        if (0 === \strpos($content, self::TRANSACTION_TYPE_CREDIT_REPAYMENT)) {
             return self::TRANSACTION_TYPE_CREDIT_REPAYMENT;
         }
 
@@ -117,6 +122,7 @@ final class BnpFortisStatementParser implements StatementParserInterface
     public function getTransactionContent(string $operation): string
     {
         \preg_match_all(self::PATTERN_TRANSACTION, trim($operation), $matches);
+
         return $matches[3][0];
     }
 }

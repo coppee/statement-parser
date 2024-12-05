@@ -2,27 +2,31 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "phpoffice/phpspreadsheet": "^1.11",
         "smalot/pdfparser": "^0.14.0",
-        "symfony/console": "5.0.*",
-        "symfony/dotenv": "5.0.*",
-        "symfony/finder": "5.0.*",
-        "symfony/flex": "^1.3.1",
-        "symfony/framework-bundle": "5.0.*",
-        "symfony/yaml": "5.0.*"
+        "symfony/console": "6.4.*",
+        "symfony/dotenv": "6.4.*",
+        "symfony/finder": "6.4.*",
+        "symfony/flex": "^2.4.1",
+        "symfony/framework-bundle": "6.4.*",
+        "symfony/yaml": "6.4.*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12.14",
-        "squizlabs/php_codesniffer": "^3.5"
+        "phpstan/phpstan": "*",
+        "rector/rector": "*",
+        "friendsofphp/php-cs-fixer": "*"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -54,9 +58,11 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "rector": "rector",
         "phpstan": "phpstan analyse .",
-        "phpcs": "phpcs --standard=phpcs.xml.dist --extensions=php,lib,inc",
-        "phpcbf": "phpcbf --standard=phpcs.xml.dist --extensions=php,lib,inc"
+        "phpcs": "php-cs-fixer fix",
+        "phpcs-check": "php-cs-fixer fix --dry-run",
+        "phpall": ["@phpstan", "@phpcs"]
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -64,7 +70,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.0.*"
+            "require": "6.4.*"
         }
     }
 }

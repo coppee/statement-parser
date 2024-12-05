@@ -23,7 +23,7 @@ final class ParseStatementCommand extends Command
 {
     protected static $defaultName = 'statement:parse';
 
-    /** @var LoggerInterface  */
+    /** @var LoggerInterface */
     private $logger;
     /** @var FilesystemService */
     private $filesystemService;
@@ -59,8 +59,8 @@ final class ParseStatementCommand extends Command
         $this->io = new SymfonyStyle($input, $output);
         $this->io->title('Statement parser');
 
-        $this->inputDirectory = \getcwd() . self::DIRECTORY . '/input';
-        $this->outputDirectory = \getcwd() . self::DIRECTORY . '/output';
+        $this->inputDirectory = \getcwd().self::DIRECTORY.'/input';
+        $this->outputDirectory = \getcwd().self::DIRECTORY.'/output';
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -76,6 +76,7 @@ final class ParseStatementCommand extends Command
         $this->generatingSpreadsheet($data);
 
         $this->io->success('SUPER');
+
         return 0;
     }
 
@@ -107,7 +108,7 @@ final class ParseStatementCommand extends Command
             }
 
             $this->io->progressAdvance();
-            $fileNumber++;
+            ++$fileNumber;
         }
         $this->io->progressFinish();
 
@@ -116,35 +117,35 @@ final class ParseStatementCommand extends Command
 
     private function generatingSpreadsheet(array $data): void
     {
-        $filename = self::OUTPUT_FILENAME . '_' . \date('Ymd-His') . '.xls';
+        $filename = self::OUTPUT_FILENAME.'_'.\date('Ymd-His').'.xls';
         $spreadsheet = new Spreadsheet($filename, $data);
 
         $columnNames = [
-            "File",
-            "ID",
-            "Value date",
-            "Amount",
-            "Type",
-            "Description",
-            "Content"
+            'File',
+            'ID',
+            'Value date',
+            'Amount',
+            'Type',
+            'Description',
+            'Content',
         ];
 
         $columnStyles = [
             'font' => [
                 'bold' => true,
-                'size' => 11
+                'size' => 11,
             ],
             'borders' => [
                 'allBorders' => [
                     'borderStyle' => Border::BORDER_THIN,
                     'color' => [
-                        'argb' => 'FF666666'
-                    ]
+                        'argb' => 'FF666666',
+                    ],
                 ],
             ],
             'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER,
-                'vertical' => Alignment::VERTICAL_CENTER
+                'vertical' => Alignment::VERTICAL_CENTER,
             ],
             'fill' => [
                 'fillType' => Fill::FILL_SOLID,

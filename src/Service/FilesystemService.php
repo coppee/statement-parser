@@ -24,7 +24,8 @@ final class FilesystemService
     public function allInputFiles(string $inputDirectory): array
     {
         if (!$this->filesystem->exists($inputDirectory)) {
-            dump('input dir no exist: ' . $inputDirectory);
+            dump('input dir no exist: '.$inputDirectory);
+
             return [];
         }
 
@@ -33,6 +34,7 @@ final class FilesystemService
         if (!$finder->hasResults()) {
             // logger
             dump('no result');
+
             return [];
         }
 
